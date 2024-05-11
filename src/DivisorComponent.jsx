@@ -26,38 +26,63 @@ export default function DivisorComponent({day,month,year, setDayError, setMonthE
     //* La fecha ingresada por el usuario la pasamos a número
     const [dayInt, monthInt, yearInt] = [day,month,year].map(Number);
     
+    
+    
     //* Creamos una fecha con los datos del usuario
     const dateUser = new Date(year,month-1,day);
+    
 
     //* Cramos una fecha restando la fecha actual con el cumpleaños
     const birthdate = new Date(dateNow.getTime() - dateUser.getTime());
 
-    //* Evaluamos lo ingresado por el usuario
 
-    //* Si le fecha es después de la fecha actual, lanzamos un error en el campo año
-    if(birthdate < 0) {
-      setYearError([true, 'Must be in the past']);
-      newYearError = true;
-    }
+    
+
 
     //* Creamos un array con los meses que tienen 31 dias y lo que tienen menos de 31
     const monthWithout31Days = [2,4,6,9,11];
     const monthWith31Days = [1,3,5,7,8,10,12];
 
-    //* El mes ingresado tiene que estar dentro del rango de meses(1-12)
-    if(monthInt > 12 || monthInt < 1) {
-      setMonthError([true, 'Must be a valid month']);
-      newMonthError = true
-    }
+    //* Evaluamos lo ingresado por el usuario
 
+
+    if(dayInt === 0) {
+      setDayError([true, 'This field is required']);
+      console.log("???")
+      newDayError = true;
+    }
+    else if(isNaN(dayInt)){
+      setDayError([true, 'Must be a valid day']);
+      newDayError = true;
+    }
     //* Lanzamos un error si inserta un día que no existe en ningún mes
-    if((dayInt > 31 || dayInt < 1)) {
+    else if((dayInt > 31 || dayInt < 1)) {
       setDayError([true, 'Must be a valid day']);
       newDayError = true;
     }
 
+    if(monthInt === 0) {
+      setMonthError([true, 'This field is required']);
+      newMonthError = true;
+    }
+    else if(isNaN(monthInt) || monthInt > 12 || monthInt < 1) {
+      setMonthError([true, 'Must be a valid month']);
+      newMonthError = true
+    }
+
+    if(yearInt === 0) {
+      setYearError([true, 'This field is required']);
+      newYearError = true;
+    }
+    else if(isNaN(yearInt) || yearInt < 0 || birthdate.getTime() < 0){
+      setYearError([true, 'Must be a valid year']);
+      newYearError = true;
+    }else if (yearInt > dateNow.getFullYear()){
+      setYearError([true, 'Must be in the past']);
+      newYearError = true;
+    }
+
     //* Lanzamos un error en caso de que la cantidad de dias no acuerde en base a los meses
-    console.log((monthWith31Days.includes(monthInt) && (dayInt > 31 || dayInt < 1)) || (monthWithout31Days.includes(monthInt) && (dayInt > 30 || dayInt < 1) ))
     if((monthWith31Days.includes(monthInt) && (dayInt > 31 || dayInt < 1)) || (monthWithout31Days.includes(monthInt) && (dayInt > 30 || dayInt < 1) )) {
       setDayError([true, 'Must be a valid day']);
       newDayError = true;
@@ -108,9 +133,9 @@ export default function DivisorComponent({day,month,year, setDayError, setMonthE
 }
 
 DivisorComponent.propTypes = {
-  day: PropTypes.string.isRequired,
-  month: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  day: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  month: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   setDayError: PropTypes.func.isRequired,
   setMonthError: PropTypes.func.isRequired,
   setYearError: PropTypes.func.isRequired,

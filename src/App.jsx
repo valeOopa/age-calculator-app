@@ -5,9 +5,9 @@ import DivisorComponent from "./DivisorComponent";
 import ResultComponent from "./ResultComponent";
 
 function App() {
-  const  [day, setDay]  = useState("-");
-  const  [month, setMonth] = useState("-");
-  const  [year, setYear]  = useState("-");
+  const  [day, setDay]  = useState(0);
+  const  [month, setMonth] = useState(0);
+  const  [year, setYear]  = useState(0);
   const [dayError, setDayError] = useState([false,null]);
   const [monthError, setMonthError] = useState([false,null]);
   const [yearError, setYearError] = useState([false,null]);
@@ -15,11 +15,11 @@ function App() {
     day: null,
     month: null,
     year: null
-  })
+  });
   
   return (
     <div id="age-calculator-container">
-      <form>
+      <form id="age-calculator-container__form">
         <FormComponent day={day} month={month} year={year} setDay={setDay} setMonth={setMonth} setYear={setYear} dayError={dayError} monthError={monthError} yearError={yearError} />
         <DivisorComponent day={day} month={month} year={year} setDayError={setDayError} setMonthError={setMonthError} setYearError={setYearError}  setTimeLived={setTimeLived} />
       </form>

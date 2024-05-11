@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins';
+  text-overflow: clip;
+  font-size: 16px;
 }
 :root{
   /* Primary */
@@ -22,5 +24,226 @@ body, #root{
   min-height: 100vh;
 }
 #root{
-  background: var(--LightGrey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--OffWhite);
+}
+#age-calculator-container{
+  background: var(--White);
+  width: 50vw;
+  max-width: 1000px;
+  padding: 3.5%;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  border-bottom-right-radius: 250px;
+}
+#age-calculator-container__form{
+  display: flex;
+  flex-wrap: wrap;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] { -moz-appearance:textfield; }
+input{
+  outline: none;
+}
+.form__col{
+  margin-right: 32px;
+  width: 22%;
+}
+.form__title{
+  color: var(--SmokeyGrey);
+  letter-spacing: 2px;
+  font-size: 0.9375em;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.form__input{
+  position: relative;
+  padding: 10px 24px;
+  color: var(--OffBlack);
+  flex-grow: 1;
+  left: 4px;
+  font-size: 1.875em;
+  width: 100%;
+  font-weight: 700;
+  border: 1px solid var(--LightGrey);
+  border-radius:8px;
+  -webkit-border-radius:8px;
+  -moz-border-radius:8px;
+  -ms-border-radius:8px;
+  -o-border-radius:8px;
+}
+.form__error{
+  position: relative;
+  left: 4px;
+  top: 8px;
+  font-size: 14px;
+  color: var(--LightRed);
+  font-style: italic;
+  height: 22px;
+
+}
+.form__input:focus{
+  caret-color: var(--Purple);
+  border-color: var(--Purple);
+}
+.form__input::placeholder{
+  color: var(--SmokeyGrey);
+}
+.borderError{
+  border-color: var(--LightRed);
+}
+.colorError{
+  color: var(--LightRed);
+}
+
+#form__divisor-container{
+  display: flex;
+  align-items: center;
+  min-width: 100%;
+  width: 100%;
+}
+#divisor-container__line{
+  height: 1px;
+  background: var(--LightGrey);;
+  flex-grow: 1;
+}
+
+#divisor-container__result-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--Purple);
+  border: none;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+#divisor-container__result-button:hover{
+  background: var(--OffBlack);
+  cursor: pointer;
+}
+.result-container__result-text{
+  font-size: 6em;
+  color: var(--OffBlack);
+  font-weight: 800;
+  font-style: italic;
+}
+.result-text__number{
+  color: var(--Purple);
+  font-size: 1em;
+}
+
+@media screen and (max-width: 1350px) {
+  #age-calculator-container{
+    width: 700px;
+    padding: 50px;
+    border-bottom-right-radius: 150px;
+  }
+  .form__error{
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #age-calculator-container{
+    width: 90%;
+    padding: 20px;
+  }
+  #age-calculator-container__form{
+    justify-content: center;
+  }
+  .form-col{
+    flex: 1;
+    width: 100%;
+  }
+  .form__title{
+    font-size: 0.625em;
+  }
+  .form__input{
+    font-size: 1.25em;
+    width: 105px;
+  }
+  #divisor-container__result-button{
+    transform: scale(.8);
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    -o-transform: scale(.8);
+}
+  .result-container__result-text{
+    font-size: 4em;
+  }
+  .result-text__number{
+    color: var(--Purple);
+    font-size: .8em;
+  }
+}
+
+
+@media screen and (max-width: 425px) {
+  #age-calculator-container{
+    width: 90%;
+    padding: 15px;
+  }
+  .form__col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form__title{
+    font-size: 0.425em;
+  }
+  .form__input{
+    margin-left: 0;
+    min-width: none;
+    width: 50px;
+    padding: 5px;
+    font-size: .8em;
+}
+.form__error{
+  font-size: 10px;
+}
+  #form__divisor-container{
+    height: 80px;
+  }
+  #divisor-container__result-button{
+    transform: scale(.6);
+    -webkit-transform: scale(.6);
+    -moz-transform: scale(.6);
+    -ms-transform: scale(.6);
+    -o-transform: scale(.6);
+}
+  .result-container__result-text{
+    font-size: 2em;
+  }
+  .result-text__number{
+    color: var(--Purple);
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 346px) {
+  
+  .form__title{
+    font-size: 0.300em;
+  }
+  #form__col-3{
+    margin-top: 6px;
+  }
+  .form__error{
+    font-size: 9px;
+  }
 }
